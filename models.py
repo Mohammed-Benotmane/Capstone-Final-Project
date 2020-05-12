@@ -95,6 +95,17 @@ class MedicationPharmacy(db.Model):
     self.medicationId = medicationId
     self.quantity = quantity
 
+  def insert(self):
+    db.session.add(self)
+    db.session.commit()
+  
+  def update(self):
+    db.session.commit()
+
+  def delete(self):
+    db.session.delete(self)
+    db.session.commit()
+
   def format(self):
     return {
       'pharmacyId': self.pharmacyId,
