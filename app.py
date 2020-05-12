@@ -1,5 +1,5 @@
 import os
-from flask import Flask,jsonify
+from flask import Flask,jsonify,request,abort
 from models import setup_db,Medication,MedicationPharmacy,Pharmacy
 from flask_cors import CORS
 
@@ -43,7 +43,24 @@ def create_app(test_config=None):
             'pharmacies':[pharmacy.format() for pharmacy in pharmacies]
         })
 
-    
+    @app.route('/pharmacies',methods=['POST'])
+    def create_pharmacies():
+        body = request.get_json()
+        new_name = body.get("name",None)
+        new_location = body.get("location",None)
+        new_phonenumber = body.get("phoneNumber",None)
+        try:
+            pharmacy = Pharmacy(name=new_name,location=new_location,phoneNumber=new_phonenumber)
+            pharmacy.insert()
+        except:
+            abort(422)
+        pharmacies=Pharmacy.query.all()
+        formatted_pharmacies= [pharmacy.format() for pharmacy in pharmacies]
+        return jsonify({
+            'success':True,
+            'pharmacies':formatted_pharmacies,
+            'total_pharmacies':len(pharmacies)
+        })
 
     return app
 
