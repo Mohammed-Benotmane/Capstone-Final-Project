@@ -43,6 +43,19 @@ def create_app(test_config=None):
             'pharmacies':[pharmacy.format() for pharmacy in pharmacies]
         })
 
+    @app.route('/medications/<int:medication_id>',methods=['DELETE'])
+    def delete_medication(medication_id):
+        medication = Medication.query.filter(Medication.id == medication_id).one_or_none()
+        if medication is None:
+            abort(404)
+        medication.delete()
+        medications = Medication.query.all()
+        return jsonify({
+            'success':True,
+            'deleted':medication_id,
+            'medications':[medication.format() for medication in medications]
+        })
+
     @app.route('/pharmacies',methods=['POST'])
     def create_pharmacies():
         body = request.get_json()
@@ -62,7 +75,26 @@ def create_app(test_config=None):
             'total_pharmacies':len(pharmacies)
         })
 
+    @app.route('/medications',methods=['POST'])
+    def create_medications():
+        body = request.get_json()
+        new_medicationName = body.get("medicationName",None)
+        new_price = body.get("price",None)
+        try:
+            medication = Medication(medicationName=new_medicationName,price=new_price)
+            medication.insert()
+        except:
+            abort(422)
+        medications=Medication.query.all()
+        formatted_medications= [medication.format() for medication in medications]
+        return jsonify({
+            'success':True,
+            'medications':formatted_medications,
+            'total_medications':len(medications)
+        })
+
     return app
+
 
 app = create_app()
 
