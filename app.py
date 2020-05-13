@@ -151,6 +151,22 @@ def create_app(test_config=None):
             "pharmacy": pharmacy.format()
         })
 
+    @app.route("/disponibilities/<disponibility_id>", methods=['PATCH'])
+    def patch_disponibility(disponibility_id):
+        body = request.get_json()
+        disponibility = MedicationPharmacy.query.get(disponibility_id)
+        if body.get("pharmacyId"):
+            disponibility.pharmacyId = body.get("pharmacyId")
+        if body.get("medicationId"):
+            disponibility.medicationId = body.get("medicationId")
+        if body.get("quantity"):
+            disponibility.quantity = body.get("quantity")
+        disponibility.update()
+        return jsonify({
+            "success": True,
+            "disponibility": disponibility.format()
+        })
+
     @app.route("/medications/<medication_id>", methods=['PATCH'])
     def patch_medications(medication_id):
         body = request.get_json()
@@ -164,6 +180,8 @@ def create_app(test_config=None):
             "success": True,
             "medication": medication.format()
         })
+    
+
 
     return app
 
