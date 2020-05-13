@@ -2,7 +2,7 @@ from sqlalchemy import Column, String, create_engine,Integer,ForeignKey
 from flask_sqlalchemy import SQLAlchemy
 import json
 import os
-database_name="finalproject"
+database_name="capstoneproject"
 database_path = os.environ.get('DATABASE_URL',"postgres://{}:{}@{}/{}".format('postgres', '','localhost:5432', database_name))
 
 db = SQLAlchemy()
@@ -86,8 +86,9 @@ class Medication(db.Model):
 class MedicationPharmacy(db.Model):  
   __tablename__ = 'MedicationPharmacy'
 
-  pharmacyId = Column(Integer,ForeignKey('Pharmacy.id'), primary_key=True)
-  medicationId = Column(Integer,ForeignKey('Medication.id'), primary_key=True)
+  id = Column(Integer, primary_key=True)
+  pharmacyId = Column(Integer,ForeignKey('Pharmacy.id'))
+  medicationId = Column(Integer,ForeignKey('Medication.id'))
   quantity = Column(Integer)
 
   def __init__(self, pharmacyId, medicationId, quantity):
@@ -108,6 +109,7 @@ class MedicationPharmacy(db.Model):
 
   def format(self):
     return {
+      'id':self.id,
       'pharmacyId': self.pharmacyId,
       'medicationId': self.medicationId,
       'quantity': self.quantity

@@ -19,6 +19,16 @@ def create_app(test_config=None):
             'total_medications':len(medications)
         })
 
+    @app.route('/disponibilities')
+    def get_disponibilities():
+        disponibilities = MedicationPharmacy.query.all()
+        formatted_disponibilities = [disponibility.format() for disponibility in disponibilities]
+        return jsonify({
+            'success':True,
+            'disponibilities':formatted_disponibilities,
+            'total_disponibilities':len(disponibilities)
+        })
+
 
     @app.route('/pharmacies')
     def get_pharmacies():
@@ -41,6 +51,19 @@ def create_app(test_config=None):
             'success':True,
             'deleted':pharmacy_id,
             'pharmacies':[pharmacy.format() for pharmacy in pharmacies]
+        })
+
+    @app.route('/disponibilities/<int:disponibility_id>',methods=['DELETE'])
+    def delete_disponibility(disponibility_id):
+        disponibility = MedicationPharmacy.query.filter(MedicationPharmacy.id == disponibility_id).one_or_none()
+        if disponibility is None:
+            abort(404)
+        disponibility.delete()
+        disponibilities = MedicationPharmacy.query.all()
+        return jsonify({
+            'success':True,
+            'deleted':disponibility_id,
+            'disponibilities':[disponibility.format() for disponibility in disponibilities]
         })
 
     @app.route('/medications/<int:medication_id>',methods=['DELETE'])
@@ -75,6 +98,25 @@ def create_app(test_config=None):
             'total_pharmacies':len(pharmacies)
         })
 
+    @app.route('/disponibilities',methods=['POST'])
+    def create_disponibilities():
+        body = request.get_json()
+        new_pharmacyId = body.get("pharmacyId",None)
+        new_medicationId = body.get("medicationId",None)
+        new_quantity = body.get("quantity",None)
+        try:
+            disponibility = MedicationPharmacy(pharmacyId=new_pharmacyId,medicationId=new_medicationId,quantity=new_quantity)
+            disponibility.insert()
+        except:
+            abort(422)
+        disponibilities=MedicationPharmacy.query.all()
+        formatted_disponibilities= [disponibility.format() for disponibility in disponibilities]
+        return jsonify({
+            'success':True,
+            'disponibilities':formatted_disponibilities,
+            'total_disponibilities':len(disponibilities)
+        })
+
     @app.route('/medications',methods=['POST'])
     def create_medications():
         body = request.get_json()
@@ -107,6 +149,20 @@ def create_app(test_config=None):
         return jsonify({
             "success": True,
             "pharmacy": pharmacy.format()
+        })
+
+    @app.route("/medications/<medication_id>", methods=['PATCH'])
+    def patch_medications(medication_id):
+        body = request.get_json()
+        medication = Medication.query.get(medication_id)
+        if body.get("medicationName"):
+            medication.medicationName = body.get("medicationName")
+        if body.get("price"):
+            medication.price = body.get("price")
+        medication.update()
+        return jsonify({
+            "success": True,
+            "medication": medication.format()
         })
 
     return app
