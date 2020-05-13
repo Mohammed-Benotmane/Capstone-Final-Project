@@ -93,6 +93,22 @@ def create_app(test_config=None):
             'total_medications':len(medications)
         })
 
+    @app.route("/pharmacies/<pharmacy_id>", methods=['PATCH'])
+    def patch_pharmacies(pharmacy_id):
+        body = request.get_json()
+        pharmacy = Pharmacy.query.get(pharmacy_id)
+        if body.get("name"):
+            pharmacy.name = body.get("name")
+        if body.get("location"):
+            pharmacy.location = body.get("location")
+        if body.get("phoneNumber"):
+            pharmacy.phoneNumber = body.get("phoneNumber")
+        pharmacy.update()
+        return jsonify({
+            "success": True,
+            "pharmacy": pharmacy.format()
+        })
+
     return app
 
 
