@@ -57,6 +57,14 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertTrue(data['medications'])
         self.assertTrue(data['total_medications'])
 
+    def test_get_disponibilities(self):
+        res = self.client().get('/disponibilities')
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code,200)
+        self.assertEqual(data['success'],True)
+        self.assertTrue(data['disponibilities'])
+        self.assertTrue(data['total_disponibilities'])
+
     
 
 
