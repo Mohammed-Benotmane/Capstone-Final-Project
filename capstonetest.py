@@ -30,6 +30,11 @@ class CapstoneTestCase(unittest.TestCase):
             'location':'North Africa',
             'phoneNumber':'5454'
         }
+
+        self.new_medication = {
+            'medicationName':'Doliprane',
+            'price':'120'
+        }
         with self.app.app_context():
             self.db = SQLAlchemy()
             self.db.init_app(self.app)
@@ -72,6 +77,13 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertTrue(data['pharmacies'])
         self.assertTrue(data['total_pharmacies'])
 
+    def test_create_medications(self):
+        res = self.client().post('/medications',json=self.new_medication)
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code,200)
+        self.assertEqual(data['success'],True)
+        self.assertTrue(data['medications'])
+        self.assertTrue(data['total_medications'])
     
 
     
