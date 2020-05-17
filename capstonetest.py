@@ -26,10 +26,9 @@ class CapstoneTestCase(unittest.TestCase):
         setup_db(self.app, self.database_path)
 
         self.new_pharmacy = {
-            'question':'where is situated Algeria?',
-            'answer':'North Africa',
-            'difficulty':3,
-            'category': 3
+            'name':'pharmacie hai',
+            'location':'North Africa',
+            'phoneNumber':'5454'
         }
         with self.app.app_context():
             self.db = SQLAlchemy()
@@ -64,6 +63,16 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['success'],True)
         self.assertTrue(data['disponibilities'])
         self.assertTrue(data['total_disponibilities'])
+
+    def test_create_pharmacies(self):
+        res = self.client().post('/pharmacies',json=self.new_pharmacy)
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code,200)
+        self.assertEqual(data['success'],True)
+        self.assertTrue(data['pharmacies'])
+        self.assertTrue(data['total_pharmacies'])
+
+    
 
     
 
