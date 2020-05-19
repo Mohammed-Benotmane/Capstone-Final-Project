@@ -11,7 +11,7 @@ class TestAppWrapper(object):
         self.app = app
 
     def __call__(self, environ, start_response):
-        environ['HTTP_AUTHORIZATION'] = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5qRkNRemt4TVRGQ1JUVTVOalk1TnpjNVJUQkRSa0ZGUXpVMU4wWkRPRVZFUkRaQ09VSXhNUSJ9.eyJpc3MiOiJodHRwczovL21vaGFtbWVkYmVub3RtYW5lLmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwMTkxMjgwNjg0MjY5NDExNTE0NyIsImF1ZCI6WyJjYXBzdG9uZSIsImh0dHBzOi8vbW9oYW1tZWRiZW5vdG1hbmUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTU4OTY5NjM3NCwiZXhwIjoxNTg5NzAzNTc0LCJhenAiOiJUdmNjTWNINjZTUktkNW56aUw0QzkxVTdaN1ZlOXNhdSIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6ZGlzcG9uaWJpbGl0aWVzIiwiZGVsZXRlOm1lZGljYXRpb25zIiwiZGVsZXRlOnBoYXJtYWNpZXMiLCJnZXQ6ZGlzcG9uaWJpbGl0aWVzIiwiZ2V0Om1lZGljYXRpb25zIiwiZ2V0OnBoYXJtYWNpZXMiLCJwYXRjaDpkaXNwb25pYmlsaXRpZXMiLCJwYXRjaDptZWRpY2F0aW9ucyIsInBhdGNoOnBoYXJtYWNpZXMiLCJwb3N0OmRpc3BvbmliaWxpdGllcyIsInBvc3Q6bWVkaWNhdGlvbnMiLCJwb3N0OnBoYXJtYWNpZXMiXX0.bgWOt9e9IY2Q4NL5cThti6M1p-EXQCKIbxsq-7MvVtFHVUhinkCz7t06vWm-gaXIreoHPQnH-AEIyhMmB85ROLAL3PnW-FgqzvyniGxrxsRsizawxfQScLmeogWA9FhfJF4-sX82VsD-AvhHUKL3_6IMjUUTugk58nWOE2fvgJA2Y--sa5Oj9teV8WAe3niHz6bXWRgKgVW-I85lNfBTW8bmudBhNJu3I_SNtyKn88Qm7HoNxMQrj6IAKKrcPI7murzzoFgT0b5eFxOc5F6ZNpd8cyilpIN9Gy3e6I-JGlYIcjOge-dcNIC2FUIE2gWy74n0ZH7cZfqaSkUJaoggJA'
+        environ['HTTP_AUTHORIZATION'] = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5qRkNRemt4TVRGQ1JUVTVOalk1TnpjNVJUQkRSa0ZGUXpVMU4wWkRPRVZFUkRaQ09VSXhNUSJ9.eyJpc3MiOiJodHRwczovL21vaGFtbWVkYmVub3RtYW5lLmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwMTkxMjgwNjg0MjY5NDExNTE0NyIsImF1ZCI6WyJjYXBzdG9uZSIsImh0dHBzOi8vbW9oYW1tZWRiZW5vdG1hbmUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTU4OTc4NTEyMywiZXhwIjoxNTg5NzkyMzIzLCJhenAiOiJUdmNjTWNINjZTUktkNW56aUw0QzkxVTdaN1ZlOXNhdSIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6ZGlzcG9uaWJpbGl0aWVzIiwiZGVsZXRlOm1lZGljYXRpb25zIiwiZGVsZXRlOnBoYXJtYWNpZXMiLCJnZXQ6ZGlzcG9uaWJpbGl0aWVzIiwiZ2V0Om1lZGljYXRpb25zIiwiZ2V0OnBoYXJtYWNpZXMiLCJwYXRjaDpkaXNwb25pYmlsaXRpZXMiLCJwYXRjaDptZWRpY2F0aW9ucyIsInBhdGNoOnBoYXJtYWNpZXMiLCJwb3N0OmRpc3BvbmliaWxpdGllcyIsInBvc3Q6bWVkaWNhdGlvbnMiLCJwb3N0OnBoYXJtYWNpZXMiXX0.Gr6T8flFdqYP93L-l56ZgFNpb9cA69YL54Zx8wp9WbL-V-SVnLQQ20CyPOZJtNPRVzcj6_NYNvtx-XEFc8JFVdPBa_xOODdD12RcmJHU1Bc35TIqTtKQ3nS1Rp_YtqsUXK0pid4xDbPIL_J0woyvGtAS3AH73KzZe-wrS07JHDNwyTyFFclnUtR_OISzn9YUGT3w5tq5y8RElOvzL4iM17ZpR5-nXyn74ByA5OS8dnp5dlccPXBDfmpg5L3KAMOPZmYU-H6uQDatS8xxZ2QTt-toRZ6ivGToeUmWul2FDgCzN6KXpRQPEe8ENpvNfzzuC1TVXA-UgXPji029DkXFRg'
         return self.app(environ, start_response)
 
 
@@ -35,6 +35,11 @@ class CapstoneTestCase(unittest.TestCase):
             'medicationName':'Doliprane',
             'price':'120'
         }
+        self.new_disponibility = {
+            'pharmacyId':1,
+            'medicationId':2,
+            'quantity':15
+        }
         with self.app.app_context():
             self.db = SQLAlchemy()
             self.db.init_app(self.app)
@@ -44,7 +49,7 @@ class CapstoneTestCase(unittest.TestCase):
     def tearDown(self):
         """Executed after reach test"""
         pass
-
+    
     def test_get_pharmacies(self):
         res = self.client().get('/pharmacies')
         data = json.loads(res.data)
@@ -84,6 +89,36 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['success'],True)
         self.assertTrue(data['medications'])
         self.assertTrue(data['total_medications'])
+    
+    def test_create_disponibilities(self):
+        res = self.client().post('/disponibilities',json=self.new_disponibility)
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code,200)
+        self.assertEqual(data['success'],True)
+        self.assertTrue(data['disponibilities'])
+        self.assertTrue(data['total_disponibilities'])
+
+    def test_delete_disponibility(self):
+        disponibility = MedicationPharmacy.query.first()
+        res = self.client().delete('/disponibilities/'+str(disponibility.id))
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code,200)
+        self.assertEqual(data['success'],True)
+        self.assertEqual(data['deleted'],disponibility.id)
+        self.assertTrue(data['disponibilities'])
+
+    def test_delete_pharmacy(self):
+        pharmacy = Pharmacy.query.first()
+        disponibilities = MedicationPharmacy.query.filter(MedicationPharmacy.pharmacyId == pharmacy.id)
+        for d in disponibilities:
+            self.test_delete_disponibility
+        res = self.client().delete('/pharmacies/'+str(pharmacy.id))
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code,200)
+        self.assertEqual(data['success'],True)
+        self.assertEqual(data['deleted'],pharmacy.id)
+        self.assertTrue(data['pharmacies'])
+        self.assertEqual(pharmacy,None)
     
 
     
