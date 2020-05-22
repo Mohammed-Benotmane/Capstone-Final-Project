@@ -9,7 +9,7 @@ def create_app(test_config=None):
     app = Flask(__name__)
     setup_db(app)
     CORS(app)
-    
+
     @app.route('/medications')
     @requires_auth('get:medications')
     def get_medication(token):
@@ -234,7 +234,11 @@ def create_app(test_config=None):
             "message": "500 Internal Server Error” "
         }), 500
     
-
+    @app.errorhandler(AuthError)
+    def handle_auth_error(ex):
+        response = jsonify(ex.error)
+        response.status_code = ex.status_code
+        return response
 
     return app
 
