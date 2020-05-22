@@ -34,6 +34,7 @@ def create_app(test_config=None):
 
 
     @app.route('/pharmacies')
+    @requires_auth('get:pharmacies')
     def get_pharmacies(token):
         pharmacies = Pharmacy.query.all()
         formatted_pharmacies = [pharmacy.format() for pharmacy in pharmacies]
