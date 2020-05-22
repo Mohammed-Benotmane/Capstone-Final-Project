@@ -9,6 +9,7 @@ def create_app(test_config=None):
     app = Flask(__name__)
     setup_db(app)
     CORS(app)
+    
     @app.route('/medications')
     @requires_auth('get:medications')
     def get_medication(token):
@@ -22,7 +23,6 @@ def create_app(test_config=None):
 
     @app.route('/disponibilities')
     @requires_auth('get:disponibilities')
-    @cross_origin(headers=["Content-Type", "Authorization"])
     def get_disponibilities(token):
         disponibilities = MedicationPharmacy.query.all()
         formatted_disponibilities = [disponibility.format() for disponibility in disponibilities]
