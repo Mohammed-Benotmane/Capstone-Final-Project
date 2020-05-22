@@ -8,8 +8,8 @@ def create_app(test_config=None):
 
     app = Flask(__name__)
     setup_db(app)
-    CORS(app)
-    app.config['PROPAGATE_EXCEPTIONS'] = True
+    #CORS(app)
+    cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
     @app.route('/medications')
     @requires_auth('get:medications')
     def get_medication(token):
