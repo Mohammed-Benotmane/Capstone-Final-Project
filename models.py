@@ -2,7 +2,7 @@ from sqlalchemy import Column, String, create_engine,Integer,ForeignKey
 from flask_sqlalchemy import SQLAlchemy
 import json
 import os
-database_name="capstone_test"
+database_name="capstoneproject"
 database_path = os.environ.get('DATABASE_URL',"postgres://{}:{}@{}/{}".format('postgres', '','localhost:5432', database_name))
 
 db = SQLAlchemy()
