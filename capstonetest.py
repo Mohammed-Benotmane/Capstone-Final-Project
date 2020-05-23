@@ -259,40 +259,6 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data["message"], "resource not found")
 
 
-'''
-    def test_delete_disponibility(self):
-        disponibility = MedicationPharmacy.query.first()
-        res = self.client().delete('/disponibilities/'+str(disponibility.id))
-        data = json.loads(res.data)
-        self.assertEqual(res.status_code,200)
-        self.assertEqual(data['success'],True)
-        self.assertEqual(data['deleted'],disponibility.id)
-        self.assertTrue(data['disponibilities'])
-
-    def test_update_pharmacies(self):
-        res = self.client().patch('/pharmacies/1',json={
-            'name':'test'
-        })
-        data = json.loads(res.data)
-        self.assertEqual(res.status_code,200)
-        self.assertEqual(data['success'],True)
-        self.assertTrue(data['pharmacy'])
-
-    def test_delete_pharmacy(self):
-        pharmacy = Pharmacy.query.first()
-        disponibilities = MedicationPharmacy.query.filter(MedicationPharmacy.pharmacyId == pharmacy.id)
-        for d in disponibilities:
-            self.test_delete_disponibility
-        res = self.client().delete('/pharmacies/'+str(pharmacy.id))
-        data = json.loads(res.data)
-        self.assertEqual(res.status_code,200)
-        self.assertEqual(data['success'],True)
-        self.assertEqual(data['deleted'],pharmacy.id)
-        self.assertTrue(data['pharmacies'])
-        self.assertEqual(pharmacy,None)
-    
-'''
-
 
 # Make the tests conveniently executable
 if __name__ == "__main__":
