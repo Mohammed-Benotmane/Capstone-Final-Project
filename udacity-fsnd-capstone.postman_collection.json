@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2a8ff735-404a-4d56-8d3a-bcac01a254bc",
+		"_postman_id": "2e2a3869-1473-4dd6-8389-bca20a4caf52",
 		"name": "udacity-fsnd-udaspicelatte",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "05cea6f9-9af0-4e60-9aad-4c8faf37ef4c",
+								"id": "ca9fdea4-daef-4a91-a2f3-6c2bb4bba481",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -30,6 +30,16 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5qRkNRemt4TVRGQ1JUVTVOalk1TnpjNVJUQkRSa0ZGUXpVMU4wWkRPRVZFUkRaQ09VSXhNUSJ9.eyJpc3MiOiJodHRwczovL21vaGFtbWVkYmVub3RtYW5lLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZWM3ZWUzYmE1ZTFkNTBiZmJjNTc0ZDIiLCJhdWQiOiJjYXBzdG9uZSIsImlhdCI6MTU5MDIyNDcwMSwiZXhwIjoxNTkwMjMxOTAxLCJhenAiOiJUdmNjTWNINjZTUktkNW56aUw0QzkxVTdaN1ZlOXNhdSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmRpc3BvbmliaWxpdGllcyIsImdldDptZWRpY2F0aW9ucyIsImdldDpwaGFybWFjaWVzIl19.scVXP2Ty-ui3-gVx_hV--6aVk45DndGYTmW7uwlOlRJ8_H5fqHMB0Ug85os8Htm6EmEFiAwkYg9CwyeQ817s657vUbYJyKm8WQdD1zSUxQjsd1LTOVl3Ldn9samLCB6MbmrY2r0XCMEmjwZuHG58A0WskaO4NxQrp3mOYQIzogXtQIHYhj9vE_oaeuqVETQGMpvE9qQyhkf2oTzhkN_VXgIzbgaGg3y3NFTfLxHw0mV4hXZtR9MOEorYvPAdgkiBIHNz14K_Eeb0sYrEsdq8hqqhePOA2YhiotGvsSoKbn77g7Mti49riHXrzG_4-NgH6I1wQ_Nl0-0A-zDpAB4heA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -50,7 +60,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "5050a5b9-2e15-474e-9981-0e61ec8d2ff1",
+								"id": "392ab06e-17c0-4653-9565-d66705e79225",
 								"exec": [
 									"pm.test(\"Status code is 401\", function () {",
 									"    pm.response.to.have.status(401);",
@@ -63,6 +73,15 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"pharmacie test\",\n    \"location\": \"algeria\",\n    \"phoneNumber\": 213\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{host}}/pharmacies",
 							"host": [
@@ -81,7 +100,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ec1488aa-b4d7-468a-89f5-03484009e69c",
+								"id": "b4f28a12-5b06-4f03-a122-7ad832ac5d0f",
 								"exec": [
 									"pm.test(\"Status code is 401\", function () {",
 									"    pm.response.to.have.status(401);",
@@ -94,6 +113,15 @@
 					"request": {
 						"method": "PATCH",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"pharmacie update\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{host}}/pharmacies/1",
 							"host": [
@@ -113,7 +141,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0aea66ad-0a6e-4533-b192-a8b0af746c78",
+								"id": "30949acc-63ce-4236-9fb7-f37a344c056b",
 								"exec": [
 									"pm.test(\"Status code is 401\", function () {",
 									"    pm.response.to.have.status(401);",
@@ -124,7 +152,7 @@
 						}
 					],
 					"request": {
-						"method": "pharmacies",
+						"method": "DELETE",
 						"header": [],
 						"url": {
 							"raw": "{{host}}/pharmacies/1",
@@ -142,12 +170,12 @@
 			],
 			"protocolProfileBehavior": {}
 		}
-		],
+	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "fc871e59-eaa4-46e8-975b-87b750ad1804",
+				"id": "9b8fbbae-1cb3-43ed-9732-08d59818cac4",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -157,7 +185,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "e5766f23-c7f1-472b-ae34-825a91147815",
+				"id": "6772f9d1-0d49-48dd-a886-c61f71e1e456",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -169,7 +197,7 @@
 		{
 			"id": "7da0fa13-ecd9-4d7d-8e38-fde2c81cfdaf",
 			"key": "host",
-			"value": "localhost:5000",
+			"value": "https://capstonemedipharm.herokuapp.com",
 			"type": "string"
 		}
 	],
