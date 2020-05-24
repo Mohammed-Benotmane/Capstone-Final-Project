@@ -10,6 +10,10 @@ def create_app(test_config=None):
     setup_db(app)
     CORS(app)
 
+    @app.route('/')
+    def welcome():
+        return 'Welcome To MediPharm project'
+    
     @app.route('/medications')
     @requires_auth('get:medications')
     def get_medication(token):
@@ -208,6 +212,14 @@ def create_app(test_config=None):
             "success": False,
             "error": 404,
             "message": "resource not found"
+        }), 404
+
+    @app.errorhandler(403)
+    def not_found(error):
+        return jsonify({
+            "success": False,
+            "error": 403,
+            "message": "Forbidden"
         }), 404
     
     @app.errorhandler(405)
