@@ -63,6 +63,18 @@ Admin
 - DELETE:medications
 - DELETE:disponibilities
 
+## Authorization
+
+To execute the endpoints you need authorization, here is two bearer token for the two roles:
+
+Client Token:
+
+'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5qRkNRemt4TVRGQ1JUVTVOalk1TnpjNVJUQkRSa0ZGUXpVMU4wWkRPRVZFUkRaQ09VSXhNUSJ9.eyJpc3MiOiJodHRwczovL21vaGFtbWVkYmVub3RtYW5lLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZWM4ZWZiMTkyZGNlODBjNmYxMmZiMzIiLCJhdWQiOiJjYXBzdG9uZSIsImlhdCI6MTU5MDIyNjk1OSwiZXhwIjoxNTkwMjM0MTU5LCJhenAiOiJUdmNjTWNINjZTUktkNW56aUw0QzkxVTdaN1ZlOXNhdSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmRpc3BvbmliaWxpdGllcyIsImdldDptZWRpY2F0aW9ucyIsImdldDpwaGFybWFjaWVzIl19.fNPyx-mFW6kKS_tD3dkkHpwSrm_pvSX7UvpyWFv8nnsQyRxEnsiCI9X4QmLzbKP3JbRZbI1uaOVcgyxuPhpoTnGrwLh0xzPac27_8TO_X8ekQKu_LESRltGstsdTjv_0ka3ywR8o7kiDrNpJlK4jWd5efbztfET3BaSAU1-cNaUYmNW0KwzW_unsUuS5FRBLL2OB9QV4ZlwbS3gzAmwGr56ON9yNlp4vuseJp21tJRFkXjfHdKJYV7xXoDpdw6QX8KtnrLGEI5Nk80VSTQVrFzxtlnmBXBHaWagSn2nxPqmIF7YUoJeyP1jqhfvdLo5naOZ3O48h7S36IA7zdclk7A'
+
+Admin Token:
+
+'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5qRkNRemt4TVRGQ1JUVTVOalk1TnpjNVJUQkRSa0ZGUXpVMU4wWkRPRVZFUkRaQ09VSXhNUSJ9.eyJpc3MiOiJodHRwczovL21vaGFtbWVkYmVub3RtYW5lLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZWM4ZWJkM2VlNTZjNDBjNmQ4MDJlZTciLCJhdWQiOiJjYXBzdG9uZSIsImlhdCI6MTU5MDI1ODk4NCwiZXhwIjoxNTkwMzQ1Mzc5LCJhenAiOiJUdmNjTWNINjZTUktkNW56aUw0QzkxVTdaN1ZlOXNhdSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmRpc3BvbmliaWxpdGllcyIsImRlbGV0ZTptZWRpY2F0aW9ucyIsImRlbGV0ZTpwaGFybWFjaWVzIiwiZ2V0OmRpc3BvbmliaWxpdGllcyIsImdldDptZWRpY2F0aW9ucyIsImdldDpwaGFybWFjaWVzIiwicGF0Y2g6ZGlzcG9uaWJpbGl0aWVzIiwicGF0Y2g6bWVkaWNhdGlvbnMiLCJwYXRjaDpwaGFybWFjaWVzIiwicG9zdDpkaXNwb25pYmlsaXRpZXMiLCJwb3N0Om1lZGljYXRpb25zIiwicG9zdDpwaGFybWFjaWVzIl19.NGt49NwR1IX8BR5kyK_e3yCrXfIBItNwJ7vlJHcqA_sX41wiQLtQ5riBu1AgDyQYi62eca_HklVESYy20qDPOr83bltC4khTBGccH3Q2iPrMTyjC4DtwG04HXiKj4D7Oe_XPyl6QgIu3zhak1j1c9aSrWjceJE3ZmfdgsFcbFYOuWGE3K1PKY6QT44iJU3KT4B1XbNW3SMlz0UWnVBavIHZMHT_s1hr3IApImEERPYm3KL6Dm56Vrwvsq234C3_BcxI_YiWdLQkdPblEPdA36fM4pdXFLyqpK3e6v4Oyep9CEnGlW1KVOMgOZy4eMErS8ue7Zc08KZJbSuciPlW_Xg'
+
 ## Endpoints
 
 ### Pharmacies:
@@ -239,3 +251,82 @@ response = {
     "success": true
 }
 
+### Disponibilities:
+
+GET '/disponibilities'
+
+reponse = {
+    "disponibilities": [
+        {
+            "id": 4,
+            "medicationId": 7,
+            "pharmacyId": 4,
+            "quantity": 158
+        }
+    ],
+    "success": true,
+    "total_disponibilities": 1
+}
+
+POST '/disponibilities'
+
+body = {
+    "pharmacyId": 4,
+    "medicationId": 7,
+    "quantity": 158
+}
+
+response = {
+    "disponibilities": [
+        {
+            "id": 4,
+            "medicationId": 7,
+            "pharmacyId": 4,
+            "quantity": 158
+        }
+    ],
+    "success": true,
+    "total_disponibilities": 1
+}
+
+
+PATCH '/disponibilities/<int:disponibility_id>'
+
+params = <int:disponibility_id>
+
+for example we change the quantity of the disponibility with id:4.
+
+body = {
+    "quantity": 800
+}
+
+response = {
+    "disponibility": {
+        "id": 4,
+        "medicationId": 7,
+        "pharmacyId": 4,
+        "quantity": 800
+    },
+    "success": true
+}
+
+DELETE '/disponibilities/<int:disponibility_id>'
+
+params = <int:disponibility_id>
+
+for example we delete the disponibility with id:4
+
+response = {
+    "deleted": 4,
+    "disponibilities": [],
+    "success": true
+}
+
+## Testing
+
+To run the tests run in your terminal
+
+```bash
+
+python capstonetest.py
+`````
